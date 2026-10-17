@@ -1,0 +1,12 @@
+ORBIT PERSONAL — UPDATE v2.4.0
+
+Yang diperbarui pada paket ini:
+- Ikon shortcut/PWA Orbit Minimal: latar gelap tanpa bidang putih, ukuran 192x192 dan 512x512. Manifest, favicon, dan cache service worker diperbarui.
+- Penyetelan kontras tema terang dan keterbacaan kartu Inbox.
+- Kartu Inbox dirapikan agar terpisah dan responsif.
+- Kalender diberi ruang layout yang lebih lebar dan judul agenda dapat membungkus secara wajar.
+- Avatar profil diberi clipping dan object-fit untuk mencegah gambar meluber.
+
+PENTING: Ini adalah pemeriksaan statis dan paket pembaruan, bukan jaminan bebas bug. Tidak tersedia pengujian browser end-to-end pada lingkungan ini. Periksa secara manual di Chromebook setelah deploy: instalasi/ikon PWA, klik kanan tiap tipe item, edit/hapus tiap entitas, kalender pada ukuran layar berbeda, foto profil, tema terang/gelap, serta ekspor/impor JSON.
+
+Kompatibilitas yang dipertahankan dengan memodifikasi file sumber yang sudah ada: struktur state dan kunci localStorage tidak sengaja diubah; ekspor/impor JSON tetap berada pada aplikasi. Sebelum deploy, ekspor JSON sebagai cadangan. Jangan hapus data situs.

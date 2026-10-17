@@ -26,3 +26,6 @@ PENTING
 - Pembaruan ini mempertahankan localStorage key `orbitdesk.workspace.v1` dan format backup/import JSON.
 - Data localStorage tersimpan di browser/profil perangkat yang sama; jangan hapus data situs/browser saat memperbarui.
 - Sebaiknya lakukan ekspor JSON sebelum setiap pembaruan besar.
+
+
+Update v2.4.0: gunakan seluruh isi paket ini di root repository, termasuk folder icons. Cache service worker telah dinaikkan agar aset baru diambil. Sebelum mengganti file, ekspor cadangan JSON dari aplikasi lama.
