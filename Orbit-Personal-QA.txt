@@ -1,26 +1,12 @@
-ORBIT PERSONAL v2.5.0 — CATATAN PEMERIKSAAN
+Orbit Personal v2.6.0 — QA / perubahan nyata
 
-Pembaruan:
-- Label hari pada grafik produktivitas dibuat lebih kontras dan tebal.
-- Arahkan kursor ke batang grafik untuk tooltip native berisi tanggal, jumlah tugas selesai, dan nama tugas yang tercatat selesai pada tanggal itu. Batang juga dapat difokuskan dengan keyboard.
-- Ikon aplikasi PWA diperbarui menggunakan ikon Orbit minimal violet yang disepakati; file ikon 192x192 dan 512x512 dibuat ulang.
-- Checklist subtugas tidak lagi tampil sebagai blok berbingkai; teks dibuat lebih besar, kontras, dan mudah membungkus baris.
-- Cache service worker dinaikkan ke v2.5.0.
+Perubahan pada basis v2.5.0:
+- Label hari grafik dibuat eksplisit dalam Bahasa Indonesia (Min, Sen, Sel, Rab, Kam, Jum, Sab), dengan kontras dan bobot huruf lebih kuat.
+- Tooltip grafik benar-benar dirender sebagai elemen HTML dan mengikuti pointer saat hover; juga tampil saat fokus keyboard. Konten diambil dari judul SVG berisi tugas selesai yang tersimpan lokal; tidak memerlukan klik.
+- Tooltip memiliki penanganan batas viewport, escape HTML, dan pesan saat hari tidak memiliki tugas selesai.
+- Checklist subtugas mendapat ukuran huruf, line-height, wrapping, dan bobot teks yang lebih mudah dibaca tanpa blok latar.
+- Cache service worker dinaikkan ke orbit-personal-v2.6.0 agar perubahan dikenali.
+- Ikon PWA violet tanpa latar putih dipertahankan dari paket dasar; manifest memakai ikon 192 dan 512 piksel.
+- STORE_KEY orbitdesk.workspace.v1 dipertahankan.
 
-Pemeriksaan yang dilakukan:
-- JavaScript inline lolos pemeriksaan sintaks Node.js.
-- Arsip ZIP lolos pemeriksaan integritas.
-- Manifest JSON valid dan menunjuk ikon 192x192 serta 512x512.
-- Cache service worker menunjukkan versi v2.5.0.
-- LocalStorage key orbitdesk.workspace.v1 tetap ada.
-- Struktur import/export JSON yang ada pada sumber tetap dipertahankan.
-
-Batasan:
-- Uji interaksi browser penuh tidak dapat diselesaikan di lingkungan ini. Tooltip native SVG bergantung pada dukungan browser; lakukan pemeriksaan akhir di Chromebook setelah deployment.
-- Grafik hanya menampilkan aktivitas yang bisa disimpulkan dari tugas dengan status selesai dan completedAt/updatedAt pada data lokal; tidak membuat riwayat aktivitas baru secara retroaktif.
-
-Sebelum memperbarui GitHub Pages:
-1. Ekspor cadangan JSON dari Orbit Personal yang sekarang.
-2. Ekstrak ZIP dan unggah isi paket ke root repository orbit-personal, termasuk index.html, manifest.webmanifest, sw.js, dan folder icons.
-3. Commit, tunggu deployment, lalu tutup dan buka ulang aplikasi agar service worker baru aktif.
-4. Jangan hapus data situs/browser; data lokal dan cadangan JSON harus tetap dipertahankan.
+Pemeriksaan yang dilakukan: validasi sintaks JavaScript via Node, JSON manifest valid, ZIP dapat dibuka dan file inti tersedia. Uji browser visual/interaksi manual belum dapat diklaim selesai.
