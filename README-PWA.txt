@@ -1,26 +1,28 @@
-ORBIT PERSONAL v2.2.1 — PAKET PWA
+ORBIT PERSONAL v2.3.0 — PAKET PWA
 
-ISI PAKET
-- index.html: aplikasi Orbit Personal
-- manifest.webmanifest: metadata pemasangan aplikasi
-- sw.js: service worker untuk cache offline dan pembaruan
-- icons/icon-192.png dan icons/icon-512.png: ikon aplikasi
+Isi paket:
+- index.html: aplikasi Orbit Personal yang sudah diperbarui
+- manifest.webmanifest: metadata instalasi PWA
+- sw.js: service worker untuk cache/offline (cache versi diperbarui)
+- icons/: ikon aplikasi
 
-PENTING: ZIP INI TIDAK BISA DIPASANG LANGSUNG DARI FILE LOKAL
-Untuk pemasangan PWA di Chromebook, seluruh isi folder perlu di-host melalui HTTPS. File HTML tunggal tetap bisa dibuka langsung, tetapi tombol instalasi dan service worker memerlukan HTTPS (kecuali localhost untuk pengembangan).
+PEMBARUAN v2.3.0
+- Menu klik kanan kontekstual untuk tugas, subtugas checklist, proyek, catatan, Inbox, habit, dan goals. Kolom teks tetap memakai menu klik kanan browser.
+- Penghapusan proyek ditambahkan. Tugas dalam proyek yang dihapus dipertahankan sebagai tugas tanpa proyek.
+- Kartu Inbox ditambahkan di bawah Fokus Hari Ini pada dashboard tanpa merombak susunan dashboard yang lain.
+- Palet mode terang dibuat lebih hangat dan konsisten dengan aksen ungu Orbit.
+- Nama tampilan dan foto profil dapat diubah melalui Pengaturan > Umum; foto diperkecil saat disimpan agar tetap ringan.
+- Identitas profil termasuk dalam penyimpanan lokal dan backup JSON.
 
-CARA MEMASANG DI CHROMEBOOK
-1. Ekstrak ZIP dan unggah isi folder (pastikan index.html, manifest.webmanifest, sw.js, dan folder icons berada pada direktori yang sama) ke hosting statis dengan HTTPS, misalnya Cloudflare Pages atau GitHub Pages.
-2. Buka URL HTTPS yang mengarah ke index.html melalui Google Chrome.
-3. Tunggu halaman selesai dimuat. Service worker akan mendaftarkan cache inti secara otomatis.
-4. Buka Pengaturan > Umum > Instal Orbit, atau gunakan menu Chrome (⋮) > Instal aplikasi jika tersedia.
-5. Setelah terpasang, Orbit dapat dibuka dari launcher dalam jendela aplikasi.
+CARA MEMPERBARUI GITHUB PAGES
+1. Sebelum mengganti file, buka Orbit yang sekarang dan pilih Pengaturan > Data & privasi > Ekspor cadangan. Simpan file JSON di tempat aman.
+2. Ekstrak ZIP ini. Pastikan index.html berada langsung di root repo, bukan di dalam folder Orbit-Personal-PWA-Final.
+3. Di repo GitHub orbit-personal, unggah/ganti index.html, manifest.webmanifest, dan sw.js di root. Unggah folder icons hanya jika diminta atau jika ikon yang ada belum sama; jangan hapus file ikon yang dipakai manifest.
+4. Commit perubahan, lalu tunggu GitHub Pages selesai menerbitkan pembaruan.
+5. Buka situs GitHub Pages dan lakukan hard refresh (Ctrl+Shift+R). Jika PWA masih menampilkan versi lama, tutup jendela aplikasi dan buka ulang setelah beberapa saat agar service worker baru aktif.
+6. Periksa data tugas/catatan/proyek masih ada. Jangan gunakan Reset data dan jangan impor cadangan kecuali memang diperlukan.
 
-OFFLINE DAN DATA
-- Buka aplikasi sekali saat online sebelum mencoba penggunaan offline.
-- Aplikasi menyimpan data pada localStorage di profil browser/perangkat tersebut; tidak ada akun atau sinkronisasi cloud.
-- Ekspor cadangan JSON dari Pengaturan > Data & privasi secara rutin. Impor akan menggantikan data saat ini; ekspor cadangan terlebih dahulu.
-- Setelah pembaruan aplikasi, buka kembali saat online sekali agar service worker mengambil versi baru.
-
-KEAMANAN DATA
-Paket ini tidak mengirim tugas, catatan, proyek, atau kebiasaan ke server. Hosting hanya mengirimkan berkas aplikasi statis. Perubahan data terjadi di browser masing-masing pengguna.
+PENTING
+- Pembaruan ini mempertahankan localStorage key `orbitdesk.workspace.v1` dan format backup/import JSON.
+- Data localStorage tersimpan di browser/profil perangkat yang sama; jangan hapus data situs/browser saat memperbarui.
+- Sebaiknya lakukan ekspor JSON sebelum setiap pembaruan besar.

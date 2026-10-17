@@ -1,5 +1,5 @@
 /* Orbit Personal service worker: cache the self-contained app for offline use. */
-const CACHE_NAME = 'orbit-personal-v2.2.1';
+const CACHE_NAME = 'orbit-personal-v2.3.0';
 const CORE_FILES = [
   './index.html',
   './manifest.webmanifest',
