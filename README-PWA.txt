@@ -1,4 +1,4 @@
-ORBIT PERSONAL v2.7.0 — PAKET PWA
+ORBIT PERSONAL v2.5.0 — PAKET PWA
 
 Isi paket:
 - index.html: aplikasi Orbit Personal yang sudah diperbarui
@@ -31,8 +31,8 @@ PENTING
 Update v2.4.0: gunakan seluruh isi paket ini di root repository, termasuk folder icons. Cache service worker telah dinaikkan agar aset baru diambil. Sebelum mengganti file, ekspor cadangan JSON dari aplikasi lama.
 
 
-PEMBARUAN v2.7.0 (FINISHING)
+PEMBARUAN v2.5.0 (FINISHING)
 - Label hari pada grafik produktivitas diperjelas. Arahkan kursor ke batang grafik untuk melihat tanggal, jumlah, dan daftar tugas yang tercatat selesai; tooltip juga tersedia saat fokus keyboard.
 - Ikon aplikasi PWA diganti ke ikon Orbit minimal violet yang disepakati (tanpa latar putih), ukuran 192 dan 512 piksel.
 - Checklist subtugas dibuat tanpa blok tebal, teks lebih besar dan kontras, serta tetap bisa dicentang.
-- Cache service worker dinaikkan ke v2.7.0 agar aset ikon dan aplikasi baru diperbarui.
+- Cache service worker dinaikkan ke v2.5.0 agar aset ikon dan aplikasi baru diperbarui.

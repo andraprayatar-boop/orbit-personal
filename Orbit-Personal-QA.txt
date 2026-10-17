@@ -1,26 +1,8 @@
-ORBIT PERSONAL v2.7.0 — CATATAN PEMERIKSAAN
+Orbit Personal v2.8.0 — catatan perbaikan
 
-Pembaruan:
-- Label hari pada grafik produktivitas dibuat lebih kontras dan tebal.
-- Arahkan kursor ke batang grafik untuk tooltip native berisi tanggal, jumlah tugas selesai, dan nama tugas yang tercatat selesai pada tanggal itu. Batang juga dapat difokuskan dengan keyboard.
-- Ikon aplikasi PWA diperbarui menggunakan ikon Orbit minimal violet yang disepakati; file ikon 192x192 dan 512x512 dibuat ulang.
-- Checklist subtugas tidak lagi tampil sebagai blok berbingkai; teks dibuat lebih besar, kontras, dan mudah membungkus baris.
-- Cache service worker dinaikkan ke v2.7.0.
-
-Pemeriksaan yang dilakukan:
-- JavaScript inline lolos pemeriksaan sintaks Node.js.
-- Arsip ZIP lolos pemeriksaan integritas.
-- Manifest JSON valid dan menunjuk ikon 192x192 serta 512x512.
-- Cache service worker menunjukkan versi v2.7.0.
-- LocalStorage key orbitdesk.workspace.v1 tetap ada.
-- Struktur import/export JSON yang ada pada sumber tetap dipertahankan.
-
-Batasan:
-- Uji interaksi browser penuh tidak dapat diselesaikan di lingkungan ini. Tooltip native SVG bergantung pada dukungan browser; lakukan pemeriksaan akhir di Chromebook setelah deployment.
-- Grafik hanya menampilkan aktivitas yang bisa disimpulkan dari tugas dengan status selesai dan completedAt/updatedAt pada data lokal; tidak membuat riwayat aktivitas baru secara retroaktif.
-
-Sebelum memperbarui GitHub Pages:
-1. Ekspor cadangan JSON dari Orbit Personal yang sekarang.
-2. Ekstrak ZIP dan unggah isi paket ke root repository orbit-personal, termasuk index.html, manifest.webmanifest, sw.js, dan folder icons.
-3. Commit, tunggu deployment, lalu tutup dan buka ulang aplikasi agar service worker baru aktif.
-4. Jangan hapus data situs/browser; data lokal dan cadangan JSON harus tetap dipertahankan.
+- Memulihkan kartu/latar dan outline panel Produktivitas dashboard seperti versi sebelumnya.
+- Memulihkan garis tren dan titik data pada diagram batang; tidak menghapus garis grafik.
+- Batang tetap berdasarkan jumlah tugas selesai yang tercatat per hari.
+- Tooltip hover/fokus keyboard tetap menampilkan tanggal dan daftar tugas selesai.
+- Cache service worker dinaikkan ke v2.8.0 agar pembaruan tidak tertahan cache lama.
+- Paket berisi index.html, manifest.webmanifest, sw.js, ikon 192/512, README, dan catatan QA.
