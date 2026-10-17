@@ -154,7 +154,7 @@ body{overflow-x:hidden;overflow-y:auto}
 .chart-bar:hover{opacity:1}
 .chart-trend{fill:none;stroke:#c2a9ff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .chart-point{fill:var(--surface);stroke:#c2a9ff;stroke-width:2}
-.chart-label{fill:var(--muted);font-size:10px}
+.chart-label{fill:var(--text);font-size:11px;font-weight:750;letter-spacing:.15px}
 .dash-timer{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:calc(100% - 39px);min-height:190px}
 .dash-timer-ring{--timer-value:100%;height:136px;width:136px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--accent) var(--timer-value),var(--surface-3) 0);margin:0 auto 13px}
 .dash-timer-ring:before{content:"";position:absolute;inset:7px;background:var(--surface);border-radius:50%}
@@ -221,9 +221,11 @@ body{overflow-x:hidden;overflow-y:auto}
 .inbox-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:4px}
 .inbox-card-foot .primary-btn,.inbox-card-foot .secondary-btn{font-size:10px;padding:7px 9px}
 .task-meta-range{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-size:10px}
-.task-checklist-preview{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
-.task-checklist-pill{font-size:9px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:2px 5px}
-.task-checklist-pill.done{color:var(--green);background:var(--green-bg)}
+.task-checklist-preview{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:7px;max-width:100%}
+.task-checklist-pill{appearance:none;display:inline-flex;align-items:flex-start;gap:7px;max-width:100%;font-size:11px;line-height:1.45;text-align:left;white-space:normal;overflow-wrap:anywhere;color:var(--text);background:transparent;border:0;border-radius:0;padding:2px 0;cursor:pointer}
+.task-checklist-pill:hover{color:var(--accent);background:transparent;text-decoration:underline;text-underline-offset:2px}
+.task-checklist-pill.done{color:var(--muted);background:transparent;text-decoration:line-through;text-decoration-color:var(--green)}
+.task-checklist-pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 .calendar-day .day-dot-range{background:color-mix(in srgb,var(--accent) 38%,var(--surface-3));border:0}
 .calendar-day .day-dot-deadline{background:var(--accent);border:1px solid var(--accent)}
 @media(max-width:1200px){.main-area{padding-left:24px;padding-right:24px}.dash-main-grid{grid-template-columns:minmax(0,1.1fr) minmax(220px,.85fr)}.dash-main-grid>.dash-panel:last-child{grid-column:1/-1}.dash-lower-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dash-lower-grid>.dash-panel:last-child{grid-column:1/-1}}
@@ -528,9 +530,9 @@ function renderDashboard(){
   const upcoming=open.filter(t=>t.due&&t.due>=today&&t.due<=shiftDate(today,7)).length;
   const maxValue=Math.max(1,...weeklyCounts);
   const points=weeklyCounts.map((v,i)=>`${42+i*62},${132-(v/maxValue)*78}`).join(' ');
-  const chartBars=weeklyCounts.map((v,i)=>{const h=v?Math.max(5,v/maxValue*78):0;const x=31+i*62;return `<rect class="chart-bar" x="${x}" y="${132-h}" width="28" height="${h}" rx="5"><title>${esc(fmtDate(week[i],{weekday:'long',day:'numeric',month:'short'}))}: ${v} tugas selesai</title></rect>`}).join('');
+  const chartBars=weeklyCounts.map((v,i)=>{const h=v?Math.max(5,v/maxValue*78):0;const x=31+i*62;const dayTasks=tasksActive().filter(t=>t.status==='done'&&(t.completedAt||t.updatedAt)&&dateKey(new Date(t.completedAt||t.updatedAt))===week[i]);const dayName=fmtDate(week[i],{weekday:'long',day:'numeric',month:'short'});const hoverText=dayTasks.length?`${dayName} · ${dayTasks.length} tugas selesai\n${dayTasks.map((t,j)=>`${j+1}. ${t.title}`).join('\n')}`:`${dayName}\nBelum ada tugas selesai yang tercatat.`;return `<g class="chart-day-mark" tabindex="0" role="img" aria-label="${esc(hoverText.replace(/\n/g,', '))}"><title>${esc(hoverText)}</title><rect class="chart-hover-target" x="${x-8}" y="48" width="44" height="91" rx="6"/><rect class="chart-bar" x="${x}" y="${132-h}" width="28" height="${h}" rx="5"/></g>`}).join('');
   const chartGrid=[0,1,2,3].map(i=>`<line class="chart-gridline" x1="25" y1="${54+i*26}" x2="452" y2="${54+i*26}"/>`).join('');
-  const chartLabels=week.map((day,i)=>`<text class="chart-label" x="${45+i*62}" y="157" text-anchor="middle">${esc(fmtDate(day,{weekday:'short'}).slice(0,3))}</text>`).join('');
+  const chartLabels=week.map((day,i)=>`<text class="chart-label" aria-label="${esc(fmtDate(day,{weekday:'long',day:'numeric',month:'long'}))}" x="${45+i*62}" y="157" text-anchor="middle">${esc(fmtDate(day,{weekday:'short'}).slice(0,3))}</text>`).join('');
   const f=state.focus;
   const timerPct=100*f.remaining/Math.max(1,f.duration);
   const timerText=`${String(Math.floor(f.remaining/60)).padStart(2,'0')}:${String(f.remaining%60).padStart(2,'0')}`;

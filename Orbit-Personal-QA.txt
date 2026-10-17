@@ -1,12 +1,26 @@
-ORBIT PERSONAL — UPDATE v2.4.0
+ORBIT PERSONAL v2.5.0 — CATATAN PEMERIKSAAN
 
-Yang diperbarui pada paket ini:
-- Ikon shortcut/PWA Orbit Minimal: latar gelap tanpa bidang putih, ukuran 192x192 dan 512x512. Manifest, favicon, dan cache service worker diperbarui.
-- Penyetelan kontras tema terang dan keterbacaan kartu Inbox.
-- Kartu Inbox dirapikan agar terpisah dan responsif.
-- Kalender diberi ruang layout yang lebih lebar dan judul agenda dapat membungkus secara wajar.
-- Avatar profil diberi clipping dan object-fit untuk mencegah gambar meluber.
+Pembaruan:
+- Label hari pada grafik produktivitas dibuat lebih kontras dan tebal.
+- Arahkan kursor ke batang grafik untuk tooltip native berisi tanggal, jumlah tugas selesai, dan nama tugas yang tercatat selesai pada tanggal itu. Batang juga dapat difokuskan dengan keyboard.
+- Ikon aplikasi PWA diperbarui menggunakan ikon Orbit minimal violet yang disepakati; file ikon 192x192 dan 512x512 dibuat ulang.
+- Checklist subtugas tidak lagi tampil sebagai blok berbingkai; teks dibuat lebih besar, kontras, dan mudah membungkus baris.
+- Cache service worker dinaikkan ke v2.5.0.
 
-PENTING: Ini adalah pemeriksaan statis dan paket pembaruan, bukan jaminan bebas bug. Tidak tersedia pengujian browser end-to-end pada lingkungan ini. Periksa secara manual di Chromebook setelah deploy: instalasi/ikon PWA, klik kanan tiap tipe item, edit/hapus tiap entitas, kalender pada ukuran layar berbeda, foto profil, tema terang/gelap, serta ekspor/impor JSON.
+Pemeriksaan yang dilakukan:
+- JavaScript inline lolos pemeriksaan sintaks Node.js.
+- Arsip ZIP lolos pemeriksaan integritas.
+- Manifest JSON valid dan menunjuk ikon 192x192 serta 512x512.
+- Cache service worker menunjukkan versi v2.5.0.
+- LocalStorage key orbitdesk.workspace.v1 tetap ada.
+- Struktur import/export JSON yang ada pada sumber tetap dipertahankan.
 
-Kompatibilitas yang dipertahankan dengan memodifikasi file sumber yang sudah ada: struktur state dan kunci localStorage tidak sengaja diubah; ekspor/impor JSON tetap berada pada aplikasi. Sebelum deploy, ekspor JSON sebagai cadangan. Jangan hapus data situs.
+Batasan:
+- Uji interaksi browser penuh tidak dapat diselesaikan di lingkungan ini. Tooltip native SVG bergantung pada dukungan browser; lakukan pemeriksaan akhir di Chromebook setelah deployment.
+- Grafik hanya menampilkan aktivitas yang bisa disimpulkan dari tugas dengan status selesai dan completedAt/updatedAt pada data lokal; tidak membuat riwayat aktivitas baru secara retroaktif.
+
+Sebelum memperbarui GitHub Pages:
+1. Ekspor cadangan JSON dari Orbit Personal yang sekarang.
+2. Ekstrak ZIP dan unggah isi paket ke root repository orbit-personal, termasuk index.html, manifest.webmanifest, sw.js, dan folder icons.
+3. Commit, tunggu deployment, lalu tutup dan buka ulang aplikasi agar service worker baru aktif.
+4. Jangan hapus data situs/browser; data lokal dan cadangan JSON harus tetap dipertahankan.
