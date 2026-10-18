@@ -1,8 +1,96 @@
-Orbit Personal v2.8.0 — catatan perbaikan
+ORBIT PERSONAL v2.10.0 — LAPORAN QA
 
-- Memulihkan kartu/latar dan outline panel Produktivitas dashboard seperti versi sebelumnya.
-- Memulihkan garis tren dan titik data pada diagram batang; tidak menghapus garis grafik.
-- Batang tetap berdasarkan jumlah tugas selesai yang tercatat per hari.
-- Tooltip hover/fokus keyboard tetap menampilkan tanggal dan daftar tugas selesai.
-- Cache service worker dinaikkan ke v2.8.0 agar pembaruan tidak tertahan cache lama.
-- Paket berisi index.html, manifest.webmanifest, sw.js, ikon 192/512, README, dan catatan QA.
+Total pemeriksaan: 79
+Lulus: 79
+Gagal: 0
+
+RINGKASAN TES
+[LULUS] JavaScript syntax (inline script 1)
+[LULUS] Service worker JavaScript syntax
+[LULUS] Manifest JSON valid
+[LULUS] Manifest icon ./icons/icon-192.png — PNG (192, 192)
+[LULUS] Manifest icon ./icons/icon-512.png — PNG (512, 512)
+[LULUS] Storage key unchanged
+[LULUS] Chart trend and points preserved
+[LULUS] Productivity panel background/border preserved
+[LULUS] Shortcut icons are violet former assets
+[LULUS] App version updated
+[LULUS] Required PWA files exist
+[LULUS] App loads and dashboard renders
+[LULUS] Seven daily chart groups — 7
+[LULUS] Trend line present
+[LULUS] Seven trend points
+[LULUS] Chart day order is chronological — ['2026-10-12', '2026-10-13', '2026-10-14', '2026-10-15', '2026-10-16', '2026-10-17', '2026-10-18']
+[LULUS] Bar height scales proportionally with task count — today/yesterday=2.000
+[LULUS] Unwanted white hover-box outline removed — {'stroke': 'none', 'fill': 'rgba(0, 0, 0, 0)'}
+[LULUS] Bars have no inherited outline — {'none'}
+[LULUS] Productivity panel still has visible surface and border — {'bg': 'rgb(34, 34, 36)', 'border': 'rgb(52, 52, 56)', 'width': 369.40625}
+[LULUS] Chart SVG fits panel — {'w': 333.40625, 'h': 120.59375, 'view': '0 0 470 170'}
+[LULUS] Chart tooltip opens on hover
+[LULUS] Tooltip includes correct task titles and count — Minggu, 18 Okt · 2 tugas selesai
+Tugas chart 1
+Tugas chart 2
+[LULUS] Zero-activity day remains hoverable — Kamis, 15 Okt · 0 tugas selesai
+Belum ada tugas selesai yang tercatat.
+[LULUS] Chart tooltip also supports keyboard focus
+[LULUS] Mobile viewport has no horizontal page overflow — {'sw': 390, 'cw': 390, 'chart': 330}
+[LULUS] Navigation view: Inbox
+[LULUS] Navigation view: Semua tugas
+[LULUS] Navigation view: Proyek
+[LULUS] Navigation view: Catatan
+[LULUS] Navigation view: Kalender
+[LULUS] Navigation view: Kebiasaan
+[LULUS] Navigation view: Tujuan
+[LULUS] Navigation view: Focus timer
+[LULUS] Navigation view: Arsip
+[LULUS] Navigation view: Pengaturan
+[LULUS] Navigation view: Dashboard
+[LULUS] Create project
+[LULUS] Custom right-click menu opens for project — Buka proyek
+Edit proyek
+Hapus proyek
+[LULUS] Edit project
+[LULUS] Create task including checklist
+[LULUS] Toggle checklist subtasks
+[LULUS] Edit task
+[LULUS] Completing task records completion timestamp
+[LULUS] Archive task
+[LULUS] Archived task listed
+[LULUS] Restore archived task
+[LULUS] Delete task
+[LULUS] Create Inbox item
+[LULUS] Delete Inbox item
+[LULUS] Create and autosave note
+[LULUS] Pin note
+[LULUS] Markdown preview
+[LULUS] Delete note
+[LULUS] Create habit
+[LULUS] Habit check-in persists
+[LULUS] Create goal
+[LULUS] Adjust goal progress — (0, 10)
+[LULUS] Focus duration selectable
+[LULUS] Focus timer starts
+[LULUS] Focus timer pauses
+[LULUS] Focus timer resets
+[LULUS] Calendar month navigation — ('Oktober 2026', 'November 2026')
+[LULUS] Calendar return to today
+[LULUS] Global search opens and filters
+[LULUS] Search modal closes with Escape
+[LULUS] Theme toggle changes theme — ('dark', 'light')
+[LULUS] Profile name change persists
+[LULUS] Profile photo upload, process and persist
+[LULUS] Remove profile photo returns to default
+[LULUS] JSON backup export valid
+[LULUS] JSON backup import and normalization
+[LULUS] No uncaught browser JavaScript exceptions
+[LULUS] No browser console errors
+[LULUS] No chart browser JavaScript exceptions
+[LULUS] Service worker caches core PWA files and skipWaiting — {'installed': True, 'activationClean': True, 'offlineFallback': True, 'iconServedFromCache': True, 'cacheFiles': 4, 'deleted': ['orbit-personal-v2.8.0']}
+[LULUS] Service worker removes stale Orbit cache and claims clients — {'installed': True, 'activationClean': True, 'offlineFallback': True, 'iconServedFromCache': True, 'cacheFiles': 4, 'deleted': ['orbit-personal-v2.8.0']}
+[LULUS] Service worker falls back to cached app when offline — {'installed': True, 'activationClean': True, 'offlineFallback': True, 'iconServedFromCache': True, 'cacheFiles': 4, 'deleted': ['orbit-personal-v2.8.0']}
+[LULUS] Service worker serves cached shortcut icon — {'installed': True, 'activationClean': True, 'offlineFallback': True, 'iconServedFromCache': True, 'cacheFiles': 4, 'deleted': ['orbit-personal-v2.8.0']}
+
+BATASAN
+- UI dan interaksi diuji di Chromium headless dengan data sintetis terisolasi. Kebijakan lingkungan memblokir navigasi browser ke URL lokal maupun file, sehingga HTML dijalankan melalui set_content dengan shim localStorage dalam memori; data aplikasi pengguna tidak disentuh.
+- Service worker install/activate/cache/offline fallback diuji terpisah lewat mock Node, bukan registrasi worker sungguhan pada origin HTTPS.
+- Registrasi service worker pada browser sungguhan, dialog instalasi PWA, dan pembaruan ikon yang disimpan OS belum diverifikasi langsung di GitHub Pages/Chromebook. Periksa fungsi tersebut setelah deploy. Tes tidak menjamin semua kombinasi tindakan/perangkat/versi browser mungkin.
