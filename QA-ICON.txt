@@ -1,0 +1,8 @@
+Orbit Personal Icon Fix v2.10.2
+- manifest.webmanifest parses as JSON
+- icon files present and dimensions checked
+- HTML favicon and apple-touch-icon URLs versioned
+- manifest icon and shortcut icon URLs versioned
+- service worker cache version bumped
+- ZIP integrity checked after creation
+Note: ChromeOS may retain the icon of an already-installed shortcut; reinstall/update shortcut after deploy if needed.

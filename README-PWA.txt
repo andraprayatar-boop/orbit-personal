@@ -1,4 +1,4 @@
-ORBIT PERSONAL v2.10.0 — PAKET PWA
+ORBIT PERSONAL v2.10.2 — PAKET PWA
 
 Isi paket:
 - index.html: aplikasi Orbit Personal yang sudah diperbarui
@@ -46,9 +46,9 @@ PEMBARUAN v2.9.0 — GRAFIK PRODUKTIVITAS
 - Cache service worker dinaikkan ke v2.9.0. localStorage dan format backup JSON tidak diubah.
 
 
-PEMBARUAN v2.10.0
+PEMBARUAN v2.10.2
 - Grafik produktivitas: outline kotak yang tidak sengaja muncul pada area hover dihilangkan. Tinggi batang mengikuti jumlah tugas selesai secara proporsional; garis tren, titik, label hari, tooltip, latar panel, dan garis tepi panel tetap dipertahankan. Area sorot mouse/keyboard tidak lagi membentuk kotak transparan besar.
 - Ikon shortcut dipulihkan ke aset Orbit ungu-violet dari desain terdahulu, tanpa kotak putih di belakang ikon; ikon merek di dalam aplikasi memakai latar ungu-violet pekat.
 - Panel Produktivitas, warna latar, dan garis tepi panel dipertahankan.
-- Cache service worker dinaikkan ke v2.10.0 agar pembaruan diterapkan.
+- Cache service worker dinaikkan ke v2.10.2 agar pembaruan diterapkan.
 - Penyimpanan lokal tetap memakai orbitdesk.workspace.v1.
