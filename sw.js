@@ -1,5 +1,5 @@
-/* Orbit Personal service worker: v2.11.1 */
-const CACHE_NAME = 'orbit-personal-v2.11.1';
+/* Orbit Personal service worker: branding patch based on v2.11.1 */
+const CACHE_NAME = 'orbit-personal-v2.11.1-brand-orbit';
 const CORE_FILES = ['./index.html','./manifest.webmanifest','./icon-192.png?v=2.11.1','./icon-512.png?v=2.11.1'];
 self.addEventListener('install', event => { event.waitUntil((async () => { const cache = await caches.open(CACHE_NAME); const urls = CORE_FILES.map(file => new URL(file, self.registration.scope).href); await cache.addAll(urls); await self.skipWaiting(); })()); });
 self.addEventListener('activate', event => { event.waitUntil((async () => { const names = await caches.keys(); await Promise.all(names.filter(name => name.startsWith('orbit-personal-') && name !== CACHE_NAME).map(name => caches.delete(name))); await self.clients.claim(); })()); });
